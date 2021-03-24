@@ -3,11 +3,13 @@
 
 var trimMean = function (arr) {
     const segment = arr.length / 20;
-    let sorted = arr.sort();
-
+    let sorted = arr.sort(function (a, b) {
+      return a - b;
+    });
+    console.log(sorted);
     let sum = 0;
     for (let i = segment; i < arr.length - segment; i++) {
-        sum += arr[i];
+      sum += sorted[i];
     }
 
     return sum / (arr.length - 2 * segment);
