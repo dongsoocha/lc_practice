@@ -1,13 +1,12 @@
 var brokenCalc = function (X, Y) {
-    let step = 0;
-    while (X !== Y) {
-        if (Y/2 < X) {
-            Y -= 1;
-            step++;
-        } else {
-            Y /= 2;
-            step++;
-        }
+  let step = 0;
+  while (X < Y) {
+    step++;
+    if (Y % 2 === 1) {
+      Y++;
+    } else {
+      Y /= 2;
     }
-    return step;
+  }
+  return step + X - Y;
 };
