@@ -1,25 +1,9 @@
-var powerfulIntegers = function (x, y, bound) {
-    let answers = {};
-    let i = 0;
-    let j = 0;
-    while (x ** i < bound) {
-        i++;
+let powerfulIntegers = (x, y, T, N = 20, ans = new Set()) => {
+  for (let i = 0; i <= N; ++i) {
+    for (let j = 0; j <= N; ++j) {
+      let cand = x ** i + y ** j;
+      if (cand <= T) ans.add(cand);
     }
-    while (y ** j < bound) {
-        j++;
-    }
-    for (let a = 0; a < i; a++) {
-        for (let b = 0; b < j; b++) {
-            const ans = x ** a + y ** b;
-            if (ans <= bound) answers[ans] = true;
-        }
-    }
-    for (let b = 0; b < j; b++) {
-        for (let a = 0; a < i; a++) {
-            const ans = x ** a + y ** b;
-            if (ans <= bound) answers[ans] = true;
-        }
-    }
-
-    return Object.keys(answers);
+  }
+  return [...ans];
 };
