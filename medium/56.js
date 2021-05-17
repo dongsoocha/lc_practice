@@ -1,6 +1,6 @@
 var merge = function(intervals) {
 //     sort intervals by start of interval
-    intervals = intervals.sort((a, b) => a[0] - b[0]);
+    intervals.sort((a, b) => a[0] - b[0]);
     let mergeMin = intervals[0][0];
     let mergeMax = intervals[0][1];
     let mergedArrs = [];
