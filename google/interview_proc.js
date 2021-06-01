@@ -79,3 +79,39 @@ var threeSum = function (nums) {
   }
   return triplets;
 };
+
+var nextPermutation = function (nums) {
+  //     find first where prev less than next
+  //     replace with minimum element afterwards greater than afterwards
+  //     reverse remaining
+  //     return nums
+  for (let i = nums.length - 2; i >= 0; i--) {
+    if (nums[i] < nums[i + 1]) {
+      let minIdx;
+      for (let j = i + 1; j < nums.length; j++) {
+        if (nums[j] <= nums[i]) {
+          minIdx = j - 1;
+          break;
+        } else if (j === nums.length - 1) {
+          minIdx = j;
+        }
+      }
+      let tmp = nums[i];
+      nums[i] = nums[minIdx];
+      nums[minIdx] = tmp;
+      let left = i + 1;
+      let right = nums.length - 1;
+      while (left < right) {
+        let tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
+        left++;
+        right--;
+      }
+      break;
+    }
+
+    if (i === 0) return nums.sort((a, b) => a - b);
+  }
+  return nums;
+};
