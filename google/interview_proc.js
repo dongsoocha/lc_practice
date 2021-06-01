@@ -147,3 +147,34 @@ var canJump = function (nums) {
     if (i + nums[i] > max) max = i + nums[i];
   }
 };
+
+var plusOne = function (digits) {
+  if (!digits) return [];
+  let sum = digits[digits.length - 1] + 1;
+  if (sum < 10) {
+    digits[digits.length - 1] = sum;
+    return digits;
+  } else {
+    if (digits.length === 1) return [1, 0];
+    let carry = true;
+    digits[digits.length - 1] = 0;
+    let currIdx = digits.length - 2;
+    while (carry) {
+      let potential = digits[currIdx] + 1;
+      if (potential < 10) {
+        digits[currIdx] = potential;
+        carry = false;
+      } else {
+        digits[currIdx] = 0;
+
+        if (currIdx === 0) {
+          carry = false;
+          digits.unshift(1);
+        }
+        console.log(digits);
+      }
+      currIdx--;
+    }
+  }
+  return digits;
+};
