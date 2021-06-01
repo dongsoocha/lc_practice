@@ -137,3 +137,13 @@ var rotate = function (matrix) {
   }
   return matrix;
 };
+
+var canJump = function (nums) {
+  let max = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    if (i > max) return false;
+    if (i === nums.length - 1) return true;
+
+    if (i + nums[i] > max) max = i + nums[i];
+  }
+};
