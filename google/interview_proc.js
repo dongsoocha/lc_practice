@@ -115,3 +115,25 @@ var nextPermutation = function (nums) {
   }
   return nums;
 };
+
+var rotate = function (matrix) {
+  //     transpose along dia
+  const mid = Math.floor(matrix.length / 2);
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (j >= i) continue;
+      let tmp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = tmp;
+    }
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < mid; j++) {
+      let tmp = matrix[i][j];
+      matrix[i][j] = matrix[i][matrix.length - 1 - j];
+      matrix[i][matrix.length - 1 - j] = tmp;
+    }
+  }
+  return matrix;
+};
